@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for my love</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #container {
+        text-align: center;
+    }
+
+    #question {
+        font-size: 24px;
+        margin-top: 50px;
+    }
+
+    #buttons {
+        margin-top: 20px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #f6d2dd;
+        color: black;
+    }
+
+    #noBtn {
+        background-color: white;
+        color: black;
+    }
+
+    #valentineImage {
+        margin-top: 20px;
+        width: 200px; /* Adjust the width as needed */
+    }
+
+    #thankYouMessage {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+        <h2 id="question">Will you be my valentine?</h2>
+        <div id="buttons">
+            <button id="yesBtn" onclick="onYesClick()">Yes</button>
+            <button id="noBtn" onclick="onNoClick()">No</button>
+        </div>
+        <img id="valentineImage" src="img/cat.jpg" alt="Valentine's Day Image">
+        <p id="thankYouMessage"></p>
+    </div>
+
+    <script>
+        function onYesClick() {
+            // Remove everything from the page
+            document.getElementById('container').innerHTML = '';
+
+            // Create a new image element
+            var imageElement = document.createElement('img');
+            imageElement.src = 'img/cat2.jpg'; // Replace 'valentine_image.jpg' with the path to your image
+            imageElement.alt = 'Valentine Image';
+
+            // Append the image element to the container
+            document.getElementById('container').appendChild(imageElement);
+
+            // Create a new paragraph element for the thank you message
+            var thankYouMessage = document.createElement('p');
+            thankYouMessage.id = 'thankYouMessage';
+            thankYouMessage.textContent = 'For me ?? Thank you my love :)';
+
+            // Append the thank you message to the container
+            document.getElementById('container').appendChild(thankYouMessage);
+        }
+
+        function onNoClick() {
+            var yesBtn = document.getElementById('yesBtn');
+            var noBtn = document.getElementById('noBtn');
+            
+            // Decrease font size of the "No" button
+            var currentNoBtnFontSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+            noBtn.style.fontSize = (currentNoBtnFontSize - 2) + 'px';
+
+            // Increase font size of the "Yes" button
+            var currentYesBtnFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentYesBtnFontSize + 2) + 'px';
+
+            // Update the question text with a begging message
+            var beggingMessages = [
+                "Please be my valentine!",
+                "Please, please be my valentine!",
+                "It would make me so happy if you clicked yes.",
+                "JUST CLICK YES",
+                "The yes button looks so big.. You should click it",
+                "I promise to make every day feel like Valentine's Day, just say yes!",
+                "Stop breaking my heart, say yes!",
+                "I'll be the happiest if you say yes!",
+                "PLEAAAAAAAAAAASEEEEEEEEEEEEEEEEE!!!!",
+                "I know I don't chase, I attract but...",
+                "Erica...",
+                "You can barely even see the no button",
+                "Did you click yes yet?",
+                "Did the yes button just get bigger?"
+
+            ];
+            var randomMessageIndex = Math.floor(Math.random() * beggingMessages.length);
+            document.getElementById('question').innerHTML = beggingMessages[randomMessageIndex];
+            
+            // Change the "No" button click behavior
+            noBtn.onclick = function() {
+                onNoClick(); // Recursively call onNoClick() to continue adjusting button sizes
+            };
+        }
+    </script>
+</body>
+</html>
